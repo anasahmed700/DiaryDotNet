@@ -11,5 +11,10 @@ namespace DiaryApp.Data
         }
 
         public DbSet<DiaryEntry> DiaryEntries { get; set; }
+        // Four steps to add a table
+        // 1. Create a model class
+        // 2. Add DB Set
+        // 3. add-migration AddDiaryEntryTable
+        // 4. update-database
     }
 }
