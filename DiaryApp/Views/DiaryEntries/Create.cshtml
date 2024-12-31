@@ -9,8 +9,10 @@
                 </div>
                 <div class="card-body">
                     <form asp-action="Create" method="post">
+                        @* <div asp-validation-summary="All" class="text-danger"></div> *@
                         <div class="form-group mb-3">
-                            <label asp-for="Title" class="form-label">Title</label>
+                            <label asp-for="Title" class="form-label">Title</label><br />
+                            <span asp-validation-for="Title" class="text-danger"></span>
                             <input asp-for="Title" class="form-control" placeholder="Enter a title"/>
                         </div>
                         <div class="form-group mb-3">
@@ -18,7 +20,8 @@
                             <input asp-for="Content" row="5" class="form-control" placeholder="What you did that day?" />
                         </div>
                         <div class="form-group mb-3">
-                            <label asp-for="CreatedAt" class="form-label">Date</label>
+                            <label asp-for="CreatedAt" class="form-label">Date</label><br />
+                            <span asp-validation-for="CreatedAt" class="text-danger"></span>
                             <input asp-for="CreatedAt" class="form-control" type="date" />
                         </div>
                         <div class="d-flex justify-content-between">
@@ -31,3 +34,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
