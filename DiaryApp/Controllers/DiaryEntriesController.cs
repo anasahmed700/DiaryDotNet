@@ -66,12 +66,29 @@ namespace DiaryApp.Controllers
             _db.DiaryEntries.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int? id)
         {
-            return View();
+            if (id is null or 0)
+            {
+                return NotFound();
+            }
+            DiaryEntry? diaryEntry = _db.DiaryEntries.Find(id);
+
+            if (diaryEntry == null)
+            {
+                return NotFound();
+            }
+            return View(diaryEntry);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(DiaryEntry obj)
+        {
+            _db.DiaryEntries.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
